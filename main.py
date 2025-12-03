@@ -7,14 +7,22 @@ Excel/CSV文件合并工具 - PySide6版本
 
 import sys
 import traceback
+from pathlib import Path
 from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtGui import QIcon
 
 from ui.main_window import MainWindow
+from core.resource_utils import get_resource_path
 
 
 def main():
     """主函数"""
     app = QApplication(sys.argv)
+    
+    # 设置应用图标（使用资源路径工具，支持打包后的环境）
+    icon_path = get_resource_path("icon.svg")
+    if icon_path.exists():
+        app.setWindowIcon(QIcon(str(icon_path)))
     
     # 设置应用样式
     app.setStyle('Fusion')

@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (
     QAbstractItemView
 )
 from PySide6.QtCore import Qt, QThread, Signal, QObject
-from PySide6.QtGui import QFont
+from PySide6.QtGui import QFont, QIcon
 from pathlib import Path
 from typing import Dict, List, Optional
 from functools import partial
@@ -19,6 +19,7 @@ import pandas as pd
 from core.constants import SUPPORTED_EXTENSIONS, DEFAULT_OUTPUT_FILENAME
 from core.file_reader import read_file_sheets, get_all_headers, check_headers_consistency
 from core.data_merger import merge_data, save_result
+from core.resource_utils import get_resource_path
 from ui.header_selection_dialog import HeaderSelectionDialog
 import os
 
@@ -64,6 +65,11 @@ class MainWindow(QDialog):
         
         self.setWindowTitle("Excel/CSV文件合并工具")
         self.setGeometry(100, 100, 700, 500)
+        
+        # 设置窗口图标（使用资源路径工具，支持打包后的环境）
+        icon_path = get_resource_path("icon.svg")
+        if icon_path.exists():
+            self.setWindowIcon(QIcon(str(icon_path)))
         
         self._setup_ui()
     

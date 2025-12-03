@@ -20,7 +20,8 @@ python -m pip install pyinstaller
 
 echo.
 echo 开始打包...
-python build.py
+echo 提示: 可以使用 --no-cleanup 参数跳过清理步骤
+python build.py %*
 
 echo.
 echo 打包完成！

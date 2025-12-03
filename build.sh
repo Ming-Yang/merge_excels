@@ -26,7 +26,8 @@ echo "检查并安装依赖..."
 
 echo
 echo "开始打包..."
-"${PYTHON_BIN}" build.py
+echo "提示: 可以使用 --no-cleanup 参数跳过清理步骤"
+"${PYTHON_BIN}" build.py "$@"
 
 echo
 echo "打包完成！构建产物位于 dist 目录"
